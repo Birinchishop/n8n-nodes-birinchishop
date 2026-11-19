@@ -1,0 +1,108 @@
+{
+	"name": "Birinchishop: daily stats by offer",
+	"nodes": [
+		{
+			"parameters": {
+				"rule": {
+					"interval": [
+						{
+							"field": "days",
+							"triggerAtHour": 9
+						}
+					]
+				}
+			},
+			"id": "5c1d8e20-0000-4000-8000-000000000001",
+			"name": "Every Day at 9:00",
+			"type": "n8n-nodes-base.scheduleTrigger",
+			"typeVersion": 1.2,
+			"position": [0, 0]
+		},
+		{
+			"parameters": {
+				"resource": "stats",
+				"operation": "get",
+				"groupBy": "offer",
+				"filters": {
+					"date_from": "={{ $now.setZone('Asia/Tashkent').minus({ days: 1 }).toFormat('yyyy-MM-dd') }}",
+					"date_to": "={{ $now.setZone('Asia/Tashkent').minus({ days: 1 }).toFormat('yyyy-MM-dd') }}"
+				},
+				"options": {}
+			},
+			"id": "5c1d8e20-0000-4000-8000-000000000002",
+			"name": "Yesterday by Offer",
+			"type": "n8n-nodes-birinchishop.birinchishop",
+			"typeVersion": 1,
+			"position": [240, 0],
+			"credentials": {
+				"birinchishopApi": {
+					"id": "",
+					"name": "Birinchishop API"
+				}
+			}
+		},
+		{
+			"parameters": {
+				"conditions": {
+					"options": {
+						"caseSensitive": true,
+						"leftValue": "",
+						"typeValidation": "loose"
+					},
+					"conditions": [
+						{
+							"id": "c1",
+							"leftValue": "={{ $json.delivery_rate_percent }}",
+							"rightValue": 10,
+							"operator": {
+								"type": "number",
+								"operation": "lt"
+							}
+						}
+					],
+					"combinator": "and"
+				},
+				"options": {}
+			},
+			"id": "5c1d8e20-0000-4000-8000-000000000003",
+			"name": "Low Delivery Rate?",
+			"type": "n8n-nodes-base.if",
+			"typeVersion": 2.2,
+			"position": [480, 0]
+		},
+		{
+			"parameters": {
+				"assignments": {
+					"assignments": [
+						{
+							"id": "a1",
+							"name": "summary",
+							"value": "={{ $json.offer_name }}: {{ $json.orders }} orders, {{ $json.delivered }} delivered ({{ $json.delivery_rate_percent }}%), earned {{ $json.earned }} UZS — consider another offer",
+							"type": "string"
+						}
+					]
+				},
+				"options": {}
+			},
+			"id": "5c1d8e20-0000-4000-8000-000000000004",
+			"name": "Summary",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [720, -80]
+		}
+	],
+	"connections": {
+		"Every Day at 9:00": {
+			"main": [[{ "node": "Yesterday by Offer", "type": "main", "index": 0 }]]
+		},
+		"Yesterday by Offer": {
+			"main": [[{ "node": "Low Delivery Rate?", "type": "main", "index": 0 }]]
+		},
+		"Low Delivery Rate?": {
+			"main": [[{ "node": "Summary", "type": "main", "index": 0 }], []]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1"
+	}
+}

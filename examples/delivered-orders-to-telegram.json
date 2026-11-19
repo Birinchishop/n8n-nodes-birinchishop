@@ -1,0 +1,64 @@
+{
+	"name": "Birinchishop: delivered orders to Telegram",
+	"nodes": [
+		{
+			"parameters": {
+				"registration": "automatic",
+				"events": [
+					"order.status_changed"
+				],
+				"options": {
+					"conversionStatuses": [
+						"sale"
+					]
+				}
+			},
+			"id": "2b7a4f10-0000-4000-8000-000000000001",
+			"name": "Birinchishop Trigger",
+			"type": "n8n-nodes-birinchishop.birinchishopTrigger",
+			"typeVersion": 1,
+			"position": [
+				0,
+				0
+			],
+			"webhookId": "9d2c1e70-0000-4000-8000-000000000001",
+			"credentials": {
+				"birinchishopApi": {
+					"id": "",
+					"name": "Birinchishop API"
+				}
+			}
+		},
+		{
+			"parameters": {
+				"chatId": "YOUR_CHAT_ID",
+				"text": "={{ $json.test ? '[TEST] ' : '' }}Delivered: order #{{ $json.data.order_id }} — {{ $json.data.order?.offer?.name }}\nPayout: {{ $json.data.order?.payout }} UZS\nClick ID: {{ $json.data.order?.tracking?.click_id || '-' }}",
+				"additionalFields": {}
+			},
+			"id": "2b7a4f10-0000-4000-8000-000000000003",
+			"name": "Send to Telegram",
+			"type": "n8n-nodes-base.telegram",
+			"typeVersion": 1.2,
+			"position": [
+				240,
+				0
+			]
+		}
+	],
+	"connections": {
+		"Birinchishop Trigger": {
+			"main": [
+				[
+					{
+						"node": "Send to Telegram",
+						"type": "main",
+						"index": 0
+					}
+				]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1"
+	}
+}

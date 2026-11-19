@@ -1,0 +1,66 @@
+{
+	"name": "n8n-nodes-birinchishop",
+	"version": "0.1.0",
+	"description": "n8n community node for the Birinchi Shop Partner API (COD CPA affiliate network, Uzbekistan): offers, tracking links, orders, stats, events and signed webhooks.",
+	"license": "MIT",
+	"homepage": "https://github.com/Birinchishop/n8n-nodes-birinchishop#readme",
+	"keywords": [
+		"n8n-community-node-package",
+		"n8n",
+		"birinchishop",
+		"cpa",
+		"affiliate",
+		"affiliate-network",
+		"partner-api",
+		"uzbekistan",
+		"cod",
+		"webhook"
+	],
+	"author": {
+		"name": "Birinchi Shop",
+		"email": "noreply@birinchishop.uz"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Birinchishop/n8n-nodes-birinchishop.git"
+	},
+	"bugs": {
+		"url": "https://github.com/Birinchishop/n8n-nodes-birinchishop/issues"
+	},
+	"scripts": {
+		"build": "n8n-node build",
+		"build:watch": "tsc --watch",
+		"dev": "n8n-node dev",
+		"lint": "n8n-node lint",
+		"lint:fix": "n8n-node lint --fix",
+		"test": "tsc -p tsconfig.test.json && vitest run",
+		"release": "n8n-node release",
+		"prepublishOnly": "n8n-node prerelease"
+	},
+	"files": [
+		"dist"
+	],
+	"n8n": {
+		"n8nNodesApiVersion": 1,
+		"strict": true,
+		"credentials": [
+			"dist/credentials/BirinchishopApi.credentials.js"
+		],
+		"nodes": [
+			"dist/nodes/Birinchishop/Birinchishop.node.js",
+			"dist/nodes/Birinchishop/BirinchishopTrigger.node.js"
+		]
+	},
+	"devDependencies": {
+		"@n8n/node-cli": "^0.57.4",
+		"eslint": "^9.39.4",
+		"n8n-workflow": "^2.48.3",
+		"prettier": "^3.8.3",
+		"release-it": "^20.2.0",
+		"typescript": "^5.9.3",
+		"vitest": "^4.1.12"
+	},
+	"peerDependencies": {
+		"n8n-workflow": "*"
+	}
+}
