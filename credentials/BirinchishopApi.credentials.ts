@@ -31,7 +31,7 @@ export class BirinchishopApi implements ICredentialType {
 		},
 		{
 			displayName:
-				'Live keys (bsk_live_...) act on your real account: "Create Order" submits a REAL order that a call center phones. Test keys (bsk_test_...) read real data but never create orders or links, and send signed test events to your webhooks. Use a test key while building and trying workflows. The credential test calls GET /me, so the key needs the "account:read" scope.',
+				'Live keys (bsk_live_...) act on your real account: "Create Order" submits a REAL order that a call center phones. Test keys (bsk_test_...) read real data and return simulated orders and links ("test": true, IDs above 2,000,000,000): nothing is stored and nothing reaches the call center. They also send signed test events to your webhooks. Use a test key while building and trying workflows. The credential test calls GET /me, so the key needs the "account:read" scope.',
 			name: 'keyModeNotice',
 			type: 'notice',
 			default: '',

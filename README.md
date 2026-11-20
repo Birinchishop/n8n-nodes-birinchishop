@@ -97,6 +97,10 @@ Customer phone numbers are always masked. Payout is earned only when an order is
 Business rules enforced by the API: one phone number cannot order the same offer twice within 24 hours
 (`duplicate_order`), and at most 3 different offers per 24 hours (`customer_order_limit`).
 
+> **One order per input item.** Like every n8n node, Order → Create runs once for each incoming item. If it follows a
+> node that returns several items (for example Offer → Get Many), it submits one order per item, and the same phone +
+> offer within 24 hours is refused with `duplicate_order`. Pass a single item, or turn on **Settings → Execute Once**.
+
 ## Birinchishop Trigger
 
 Outputs the verified event exactly as sent by the platform:

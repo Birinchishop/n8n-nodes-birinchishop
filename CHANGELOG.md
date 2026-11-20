@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.3
+
+- Clearer wording about test keys: they return a simulated order or link (`"test": true`); nothing is stored and nobody is phoned.
+- Offer search description says to use Uzbek or Russian keywords (helps AI agents that use the node as a tool).
+- README: note that Create Order runs once per input item.
+
 ## 0.1.2
 
 - Re-release for the n8n Creator Portal review. No code changes.

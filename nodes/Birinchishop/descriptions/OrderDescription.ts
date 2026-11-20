@@ -55,7 +55,7 @@ export const orderFields: INodeProperties[] = [
 	/* ----------------------------- order:create ----------------------------- */
 	{
 		displayName:
-			'Live keys (bsk_live_...) create a REAL order: a call center phones the customer and a courier delivers the product. Send only real customers who asked to order, with their correct phone number. Test, sample or fake orders get the account blocked. To try a workflow, use a test key (bsk_test_...): every check runs, but nothing is created.',
+			'Live keys (bsk_live_...) create a REAL order: a call center phones the customer and a courier delivers the product. Send only real customers who asked to order, with their correct phone number. Test, sample or fake orders get the account blocked. To try a workflow, use a test key (bsk_test_...): every check runs and a simulated order is returned ("test": true), but nothing is stored and nobody is phoned.',
 		name: 'orderCreateNotice',
 		type: 'notice',
 		default: '',

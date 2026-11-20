@@ -121,7 +121,7 @@ export const offerFields: INodeProperties[] = [
 				default: '',
 				placeholder: 'e.g. soat',
 				description:
-					'Product search in Uzbek (Latin or Cyrillic) or Russian; synonyms and typos are tolerated',
+					'Product search. Offer names are in Uzbek and Russian, so use keywords in those languages (for example "soat" or "часы" for a watch, not "watch"); synonyms and typos are tolerated.',
 			},
 		],
 	},
