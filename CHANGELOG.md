@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.2
+
+- Re-release for the n8n Creator Portal review. No code changes.
+
 ## 0.1.1
 
 - Package metadata only: public access for npm provenance and a monitored author contact address. No code changes.
