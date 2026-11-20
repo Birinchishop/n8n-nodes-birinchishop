@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-birinchishop",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "n8n community node for the Birinchi Shop Partner API (COD CPA affiliate network, Uzbekistan): offers, tracking links, orders, stats, events and signed webhooks.",
 	"license": "MIT",
 	"publishConfig": {
@@ -21,7 +21,7 @@
 	],
 	"author": {
 		"name": "Birinchi Shop",
-		"email": "noreply@birinchishop.uz"
+		"email": "support@birinchishop.uz"
 	},
 	"repository": {
 		"type": "git",

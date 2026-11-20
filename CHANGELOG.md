@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.1
+
+- Package metadata only: public access for npm provenance and a monitored author contact address. No code changes.
+
 ## 0.1.0
 
 First release.
